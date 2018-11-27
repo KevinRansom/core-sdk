@@ -23,12 +23,12 @@ phases:
       LinuxPortable: $(_LinuxPortable)
       RuntimeId: $(_RuntimeIdentifier)
       AdditionalBuildParameters: $(_AdditionalBuildParameters)
-      ${{ if ne($(_BuildArchitecture), 'arm') }}:
+      ${{ if ne(variables['_BuildArchitecture'], 'arm') }}:
         ${{ if eq(parameters.agentOs, 'Windows_NT') }}:
           TestParameter: -test
         ${{ if ne(parameters.agentOs, 'Windows_NT') }}:
           TestParameter: --test
-      ${{ if eq($(_BuildArchitecture), 'arm') }}:
+      ${{ if eq(variables['_BuildArchitecture'], 'arm') }}:
         TestParameter: ''
     steps:
     - ${{ if eq(parameters.agentOs, 'Windows_NT') }}:
